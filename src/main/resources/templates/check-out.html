@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zxx" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="general :: baseHead">
+</head>
+<body>
+
+	<!-- Page Preloder -->
+	<div id="preloder">
+		<div class="loader"></div>
+	</div>
+	<!-- Header Section Begin -->
+	<!-- Header Section Begin -->
+	<header class="header-section">
+		<div class="container">
+			<div class="inner-header">
+				<div class="row">
+					<div class="col-lg-2 col-md-2">
+						<div class="logo">
+							<a th:href="@{/}" href="#"> <img th:src="@{/image/logo.png}"
+								src="#" alt="">
+							</a>
+						</div>
+					</div>
+					<div class="col-lg-7 col-md-7">
+						<div class="advanced-search">
+							<button type="button" class="category-btn">All
+								Categories</button>
+							<div class="input-group">
+								<input type="text" placeholder="What do you need?">
+								<button type="button">
+									<i class="ti-search"></i>
+								</button>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-3 text-right col-md-3" id="addToCardList">
+						<ul class="nav-right">
+							<li class="heart-icon"><a href="#"> <i
+									class="icon_heart_alt"></i> <span>0</span>
+							</a></li>
+							<li class="cart-icon"><a href="#"> <i
+									class="icon_bag_alt"></i> <span>[[${orders.getNumberOfProducts()}]]</span>
+							</a>
+								<div class="cart-hover">
+									<div class="select-items">
+										<table>
+											<tbody>
+												<tr th:each="order: ${orders.orderProducts}">
+													<td class="si-pic"><img
+														th:src="@{${order.getProduct().addToCardUrl}}" src="#"
+														alt=""></td>
+													<td class="si-text" th:with="sum=${sum}+12">
+														<div class="product-selected" th:with="sum=15">
+															<p>&euro; [[${order.getProduct().price}]] x
+																[[${order.quantity}]]</p>
+															<h6>[[${order.getProduct().name}]]</h6>
+														</div>
+													</td>
+
+												</tr>
+											</tbody>
+										</table>
+									</div>
+									<div class="select-total">
+										<span>total:</span>
+										<h5>&euro;
+											[[${#numbers.formatDecimal(orders.getTotalOrderPrice(), 0,
+											'COMMA', 2, 'POINT')}]]</h5>
+									</div>
+									<div class="select-button">
+										<a th:href="@{/view/shopping-cart/}+${orders.id}" href="#"
+											class="primary-btn view-card">VIEW CARD</a> <a
+											th:href="@{/view/continue/}+${orders.id}" href="#"
+											class="primary-btn checkout-btn">CONTINUE SHOPPING</a>
+									</div>
+								</div></li>
+							<li class="cart-price">&euro;
+								[[${#numbers.formatDecimal(orders.getTotalOrderPrice(), 0,
+								'COMMA', 2, 'POINT')}]]</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="nav-item">
+			<div class="container">
+				<div class="nav-depart">
+					<div class="depart-btn">
+						<i class="ti-menu"></i> <span>Shopping List</span>
+						<ul class="depart-hover">
+							<li th:each="category: ${lCategory}"><a
+								th:href="@{/view/product/}+${category.id}" href="#"
+								th:text="${category.categoryName}"></a></li>
+						</ul>
+					</div>
+				</div>
+				<nav class="nav-menu mobile-menu">
+					<ul>
+						<li><a th:href="@{/}" href="#">Home</a></li>
+						<li><a th:href="@{/view/shop}" href="#">Shop</a></li>
+					</ul>
+				</nav>
+				<div id="mobile-menu-wrap"></div>
+			</div>
+		</div>
+	</header>
+	<!-- Header End -->
+
+	<!-- Breadcrumb Section Begin -->
+	<div class="breacrumb-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="breadcrumb-text product-more">
+						<a th:href="@{/}" href="#"><i class="fa fa-home"></i> Home</a> <a
+							th:href="@{/view/shop}" href="#">Shop</a><a
+							th:href="@{/view/shopping-cart/}+${orders.id}" href="#">Shopping
+							Cart</a> <span>Check Out</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Breadcrumb Section Begin -->
+
+	<!-- Shopping Cart Section Begin -->
+	<section class="checkout-section spad">
+		<div class="container">
+			<form class="checkout-form" id="billingForm" name="billingForm">
+				<div class="row">
+					<div class="col-lg-6">
+						<!-- <div class="checkout-content">
+							<a href="#" class="content-btn">Click Here To Login</a>
+						</div> -->
+						<h4>Billing Details</h4>
+						<div class="row">
+							<div class="col-lg-6">
+								<label for="firstName">First Name<span>*</span></label> <input
+									type="text" th:value="${orders.billingDetails ne null} ? ${orders.billingDetails.firstName} : ''" id="firstName" name="firstName" value="">
+							</div>
+							<div class="col-lg-6">
+								<label for="lastName">Last Name<span>*</span></label> <input
+									type="text" th:value="${orders.billingDetails ne null} ? ${orders.billingDetails.lastName} : ''" id="lastName" name="lastName">
+							</div>
+							<!--<div class="col-lg-12">
+								<label for="cun-name">Company Name</label> <input type="text"
+									id="cun-name">
+							</div>-->
+							<div class="col-lg-12">
+								<label for="country">Country<span>*</span></label> <input
+									type="text" th:value="${orders.billingDetails ne null} ? ${orders.billingDetails.country} : ''"  name="country" id="country">
+							</div>
+							<div class="col-lg-12">
+								<label for="addressLine1">Address Line 1<span>*</span></label> <input
+									type="text" th:value="${orders.billingDetails ne null} ? ${orders.billingDetails.addressLine1} : ''" name="addressLine1" value="" id="addressLine1"
+									class="street-first">
+							</div>
+							<div class="col-lg-12">
+								<label for="addressLine2">Address Line 2<span>*</span></label> <input
+									type="text" th:value="${orders.billingDetails ne null} ? ${orders.billingDetails.addressLine2} : ''" name="addressLine2" id="addressLine2"
+									class="street-first">
+							</div>
+							<div class="col-lg-12">
+								<label for="postalZipCode">Postcode / ZIP <span>*</span></label>
+								<input type="text" th:value="${orders.billingDetails ne null} ? ${orders.billingDetails.postalZipCode} : ''" name="postalZipCode" id="postalZipCode">
+							</div>
+							<div class="col-lg-12">
+								<label for="town">Town / City<span>*</span></label> <input
+									type="text" th:value="${orders.billingDetails ne null} ? ${orders.billingDetails.townOrCity} : ''" name="townOrCity" id="townOrCity">
+							</div>
+							<div class="col-lg-6">
+								<label for="emailAddress">Email Address<span>*</span></label> <input
+									type="text"  th:value="${orders.billingDetails ne null} ? ${orders.billingDetails.emailAddress} : ''" name="emailAddress" id="emailAddress">
+							</div>
+							<div class="col-lg-6">
+								<label for="phone">Phone<span>*</span></label> <input
+									type="text" th:value="${orders.billingDetails ne null} ? ${orders.billingDetails.phoneNumber} : ''" name="phone" id="phone">
+									<input  type="hidden" id="orderId" name="orderId" th:value="${orders.id}" /> 
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<div class="place-order">
+							<h4>Your Order</h4>
+							<div class="order-total">
+								<ul class="order-table">
+									<li>Product <span>Total</span></li>
+									<li class="fw-normal" th:each="order: ${orders.orderProducts}">[[${order.getProduct().name}]]
+										x [[${order.quantity}]] <span>&euro;
+											[[${#numbers.formatDecimal(order.getTotalPrice(), 0, 'COMMA',
+											2, 'POINT')}]]</span>
+									</li>
+									<li class="fw-normal">Subtotal <span id="subTotalAmount">&euro;
+											[[${#numbers.formatDecimal(orders.getTotalOrderPrice(), 0,
+											'COMMA', 2, 'POINT')}]]</span></li>
+									<li class="fw-normal">Delivery charge <span id="deliveryChargeAmount">&euro;
+											[[${#numbers.formatDecimal(orders.deliveryCharge, 0,
+											'COMMA', 2, 'POINT')}]]</span></li>		
+									<li class="total-price">Total <span id="totalOrderAmount">&euro;
+											[[${#numbers.formatDecimal(orders.getTotalOrderPriceWithDeliveryCharge(), 0,
+											'COMMA', 2, 'POINT')}]]</span></li>
+								</ul>
+								 <div class="payment-check">
+									<div class="discount-coupon">
+										<h6>Delivery Options</h6>
+										<!-- Default checked -->
+										<div class="custom-control custom-radio">
+											<input th:if="${orders.deliveryCharge == 0}" type="radio" class="custom-control-input"
+												id="defaultChecked" name="deliveryOptions" value="delivery">
+											<input th:unless="${orders.deliveryCharge == 0}" type="radio" class="custom-control-input"
+												id="defaultChecked" name="deliveryOptions" value="delivery" checked>	
+											<label class="custom-control-label" for="defaultChecked">Delivery
+												(&euro; 10.00)</label>
+												
+												
+										</div>
+										<!-- Default unchecked -->
+										<div class="custom-control custom-radio">
+											<input th:if="${orders.deliveryCharge == 0}" type="radio" class="custom-control-input"
+												id="defaultUnchecked" name="deliveryOptions" value="pickup" checked>
+											<input th:unless="${orders.deliveryCharge == 0}" type="radio" class="custom-control-input"
+												id="defaultUnchecked" name="deliveryOptions" value="pickup">	
+											 <label
+												class="custom-control-label" for="defaultUnchecked">Pick-Up
+											</label>
+										</div>
+									</div>
+								</div>
+								<div class="order-btn">
+									<button type="submit" class="site-btn place-btn">Place
+										Order</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</section>
+	<!-- Shopping Cart Section End -->
+
+	<!-- Partner Logo Section Begin -->
+	<div class="partner-logo">
+		<div class="container">
+			<div class="logo-carousel owl-carousel">
+				<div class="logo-item">
+					<div class="tablecell-inner">
+						<img src="#" alt="">
+					</div>
+				</div>
+				<div class="logo-item">
+					<div class="tablecell-inner">
+						<img src="#" alt="">
+					</div>
+				</div>
+				<div class="logo-item">
+					<div class="tablecell-inner">
+						<img src="#" alt="">
+					</div>
+				</div>
+				<div class="logo-item">
+					<div class="tablecell-inner">
+						<img src="#" alt="">
+					</div>
+				</div>
+				<div class="logo-item">
+					<div class="tablecell-inner">
+						<img src="#" alt="">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Partner Logo Section End -->
+
+	<footer th:replace="general :: footer"></footer>
+
+
+</body>
+
+</html>

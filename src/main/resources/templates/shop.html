@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="general :: baseHead">
+</head>
+
+<body>
+
+	<!-- Page Preloder -->
+	<div id="preloder">
+		<div class="loader"></div>
+	</div>
+
+	<!-- Header Section Begin -->
+	<header class="header-section">
+		<div class="container">
+			<div class="inner-header">
+				<div class="row">
+					<div class="col-lg-2 col-md-2">
+						<div class="logo">
+							<a th:href="@{/}" href="#"> <img th:src="@{/image/logo.png}"
+								src="#" alt="">
+							</a>
+						</div>
+					</div>
+					<div class="col-lg-7 col-md-7">
+						<div class="advanced-search">
+							<button type="button" class="category-btn">All
+								Categories</button>
+							<div class="input-group">
+								<input type="text" placeholder="What do you need?">
+								<button type="button">
+									<i class="ti-search"></i>
+								</button>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-3 text-right col-md-3" id="addToCardList">
+						<ul class="nav-right">
+							<li class="cart-price">&euro;
+								[[${#numbers.formatDecimal(orders.getTotalOrderPrice(), 0,
+								'COMMA', 2, 'POINT')}]]
+								
+							</li>
+							<li><a th:href="@{/view/shopping-cart/}+${orders.id}" href = "#" class="btn btn-info"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Shopping Cart</a></li>
+							
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="nav-item">
+			<div class="container">
+				<div class="nav-depart">
+					<div class="depart-btn">
+						<i class="ti-menu"></i> <span>Shopping List</span>
+						<ul class="depart-hover">
+							<li th:each="category: ${lCategory}"><a
+								th:href="@{/view/product/}+${category.id}" href="#"
+								th:text="${category.categoryName}"></a></li>
+						</ul>
+					</div>
+				</div>
+				<nav class="nav-menu mobile-menu">
+					<ul>
+						<li><a th:href="@{/}" href="#">Home</a></li>
+						<li class="active"><a th:href="@{/view/shop}" href="#">Shop</a></li>
+					</ul>
+				</nav>
+				<div id="mobile-menu-wrap"></div>
+			</div>
+		</div>
+	</header>
+	<!-- Header End -->
+	<!-- Header End -->
+
+	<!-- Breadcrumb Section Begin -->
+	<div class="breacrumb-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="breadcrumb-text">
+						<a th:href="@{/}" href="#"><i class="fa fa-home"></i> Home</a> <span>Shop</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Breadcrumb Section Begin -->
+
+	<!-- Product Shop Section Begin -->
+	<section class="product-shop spad">
+
+		<div class="product-list">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-2 col-sm-6" th:each="products: ${lProducts}">
+						<div class="product-item">
+							<form class="addToCardForm"
+								th:id="'addToCardForm' + ${products.id}">
+								<div class="pi-pic">
+									<div th:if="${products.availableQuantity != 0}" class="sale pp-sale">Available</div>
+									<div th:unless="${products.availableQuantity != 0}" class="sale pp-sale" style="background-color:red">Out of Stock</div>
+									<!-- <img th:src="@{${products.pictureUrl}}" src="#" alt=""> -->
+									<img th:src="@{'data:image/jpeg;base64,'+${products.base64EncodedImage1()}}" src="#" alt="">
+									<div class="icon">
+										<i class="icon_heart_alt"></i>
+									</div>
+									<ul th:if="${products.availableQuantity != 0}">
+
+										<li class="quick-view"><input class="form-control"
+											style="width: 60px; height: 39px;padding-right: 2px;text-align:center;" min="1" name="quantity" required="required" type="number"
+											value="1"> <input type="hidden" name="productId"
+											th:value="${products.id}" /></li>
+										<li class="quick-view"><button class="btn btn-primary"
+												type="submit" style="height: 39px; margin-bottom: 4px">
+												<i class="fa fa-cart-plus"></i>
+											</button></li>
+									</ul>
+								</div>
+								<div class="pi-text">
+									<div class="catagory-name">[[${products.shoppingCategory.categoryName}]]</div>
+									<a href="#">
+										<h5 style="font-size:16px" th:text="${products.name}"></h5>
+									</a>
+									<div class="product-price">&euro; [[${products.price}]]</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="loading-more">
+				<i class="icon_loading"></i> <a href="#"> Loading More </a>
+			</div>
+		</div>
+
+	</section>
+	<!-- Product Shop Section End -->
+
+	<!-- Partner Logo Section Begin -->
+	<div class="partner-logo">
+		<div class="container">
+			<div class="logo-carousel owl-carousel">
+				<div class="logo-item">
+					<div class="tablecell-inner">
+						<img src="#" alt="">
+					</div>
+				</div>
+				<div class="logo-item">
+					<div class="tablecell-inner">
+						<img src="#" alt="">
+					</div>
+				</div>
+				<div class="logo-item">
+					<div class="tablecell-inner">
+						<img src="#" alt="">
+					</div>
+				</div>
+				<div class="logo-item">
+					<div class="tablecell-inner">
+						<img src="#" alt="">
+					</div>
+				</div>
+				<div class="logo-item">
+					<div class="tablecell-inner">
+						<img src="#" alt="">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Partner Logo Section End -->
+
+	<footer th:replace="general :: footer"></footer>
+</body>
+
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="baseHead">
+<meta charset="UTF-8">
+<meta name="description" content="Fashi Template">
+<meta name="keywords" content="Fashi, unica, creative, html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Shopping | Card</title>
+<!-- Google Font -->
+<link
+	href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap"
+	rel="stylesheet">
+
+<!-- Css Styles -->
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{/css/font-awesome.min.css}">
+<link rel="stylesheet" th:href="@{/css/themify-icons.css}">
+<link rel="stylesheet" th:href="@{/css/elegant-icons.css}">
+<link rel="stylesheet" th:href="@{/css/owl.carousel.min.css}">
+<link rel="stylesheet" th:href="@{/css/nice-select.css}">
+<link rel="stylesheet" th:href="@{/css/jquery-ui.min.css}">
+<link rel="stylesheet" th:href="@{/css/slicknav.min.css}">
+<link rel="stylesheet" th:href="@{/css/style.css}">
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+
+
+
+</head>
+<body>
+	<header th:fragment="header">
+		<h1>Welcome to My Blog</h1>
+	</header>
+
+	<nav th:fragment="menu">
+		<a th:href="@{/}">Homepage</a> <a th:href="@{/about}">About Me</a> <a
+			th:href="@{/blog}">Blog</a> <a th:href="@{/contact}">Contact</a>
+	</nav>
+
+	<footer class="footer-section" th:fragment="footer">
+		<!-- Footer Section Begin -->
+		<div class="copyright-reserved">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="copyright-text">
+							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+							&copy;
+							<script>
+								document.write(new Date().getFullYear());
+							</script>
+							Powered by Test.me
+							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+						</div>
+						<!-- <div class="payment-pic">
+                            <img src="img/payment-method.png" alt="">
+                        </div>-->
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Footer Section End -->
+		<!-- Js Plugins -->
+		<script th:src="@{/js/jquery-3.3.1.min.js}"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+		<script th:src="@{/js/bootstrap.min.js}"></script>
+		<script th:src="@{/js/jquery-ui.min.js}"></script>
+		<script th:src="@{/js/jquery.countdown.min.js}"></script>
+		<script th:src="@{/js/jquery.nice-select.min.js}"></script>
+		<script th:src="@{/js/jquery.zoom.min.js}"></script>
+		<script th:src="@{/js/jquery.dd.min.js}"></script>
+		<script th:src="@{/js/jquery.slicknav.js}"></script>
+		<script th:src="@{/js/owl.carousel.min.js}"></script>
+		<script th:src="@{/js/ajax/utility-script.js}"></script>
+		<script th:src="@{/js/ajax/add-to-card-post-request.js}"></script>
+		<script th:src="@{/js/main.js}"></script>
+		<script th:src="@{/js/form-validation.js}"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+		<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+	</footer>
+</body>
+</html>

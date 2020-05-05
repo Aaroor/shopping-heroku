@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zxx" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="general :: baseHead">
+</head>
+<body>
+	<!-- Page Preloder -->
+	<div id="preloder">
+		<div class="loader"></div>
+	</div>
+	<!-- Header Section Begin -->
+	<!-- Header Section Begin -->
+	<header class="header-section">
+		<div class="container">
+			<div class="inner-header">
+				<div class="row">
+					<div class="col-lg-2 col-md-2">
+						<div class="logo">
+							<a th:href="@{/}" href="#"> <img th:src="@{/image/logo.png}"
+								src="#" alt="">
+							</a>
+						</div>
+					</div>
+
+					<div class="col-lg-7 col-md-7">
+						<div class="advanced-search">
+							<p class="category-btn">
+								<i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard
+							</p>
+							<div class="input-group">
+								<h3 style="margin-top: 5px; font-weight: bold">HLS DRINK
+									SHOP</h3>
+								<button type="button">
+									<i class="fa fa-tachometer" aria-hidden="true"></i>
+								</button>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-3 text-right col-md-3" id="addToCardList">
+						<ul class="nav-right">
+							<li><a th:href="@{/logout}" href="#" class="btn btn-info"><i
+									class="fa fa-sign-out" aria-hidden="true"></i> Log out</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="nav-item">
+			<div class="container">
+				<div class="nav-depart">
+					<div class="depart-btn">
+						<i class="ti-menu"></i> <span>Product List</span>
+						<ul class="depart-hover">
+							<li><a th:href="@{/admin/product-list}" href="#">Product
+									List</a></li>
+							<li class="active"><a th:href="@{/admin/add-product}"
+								href="#">Add Product</a></li>
+							<li><a th:href="@{/admin/category-list}" href="#">Product
+									Category</a></li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="nav-depart">
+					<div class="depart-btn">
+						<i class="ti-menu"></i> <span>Orders</span>
+						<ul class="depart-hover">
+							<li><a th:href="@{/admin/delivery-order}" href="#">Delivery Orders</a></li>
+							<li><a th:href="@{/admin/pickup-order}" href="#">Pickup Orders</a></li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="nav-depart">
+					<div class="depart-btn">
+						<i class="ti-menu"></i> <span>Admin User</span>
+						<ul class="depart-hover">
+							<li><a th:href="@{/admin/user-list}" href="#">User List</a></li>
+							<li><a th:href="@{/registration}" href="#">Add user</a></li>
+						</ul>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</header>
+	<!-- Header End -->
+
+
+	<!-- Breadcrumb Section Begin -->
+	<div class="breacrumb-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="breadcrumb-text product-more">
+						<a th:href="@{/admin/home}" href="#"><i
+							class="fa fa-tachometer" aria-hidden="true"></i> Dashboard</a> <span>Product
+							Category</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Breadcrumb Section end -->
+	<!-- Shopping Cart Section Begin -->
+	<section class="checkout-section spad" style="padding-top: 10px">
+		<div class="container">
+			<form method="POST" enctype="multipart/form-data"
+				class="checkout-form" id="productForm" name="productForm">
+				<div class="row">
+					<div class="col-lg-6">
+						<!-- <div class="checkout-content">
+							<a href="#" class="content-btn">Click Here To Login</a>
+						</div> -->
+						<h4>New Product</h4>
+						<div id="product-messgae">
+						</div>
+						<div class="row">
+							<div class="col-lg-12">
+								<label for="productName">Product Name<span>*</span></label> <input
+									type="text" name="productName" id="productName">
+							</div>
+							<div class="col-lg-12">
+								<label for="unitPrice">Unit Price<span>*</span></label> <input
+									type="number" name="unitPrice" id="unitPrice">
+							</div>
+							<div class="col-lg-6">
+
+								<label for="productCategory">Product Category<span>*</span></label>
+								<select id="productCategory" name="productCategory"
+									class="form-control">
+									<option th:value="${category.id}"
+										th:each="category: ${lCategories}">[[${category.categoryName}]]</option>
+								</select>
+								<!-- $('#dropDownId :selected').text(); -->
+
+							</div>
+							<div class="col-lg-6">
+								<label for="quantity">Quantity<span>*</span></label> <input
+									type="number" id="quantity" name="quantity">
+							</div>
+							<div class="col-lg-12"></div>
+
+							<div class="col-lg-12">
+								<div class="discount-coupon">
+									<h6>Is show</h6>
+									<!-- Default checked -->
+									<div class="custom-control custom-radio">
+										<input type="radio" class="custom-control-input"
+											id="defaultChecked" name="isShow" value="true"> <label
+											class="custom-control-label" for="defaultChecked">True</label>
+
+
+									</div>
+									<!-- Default unchecked -->
+									<div class="custom-control custom-radio">
+										<input type="radio" class="custom-control-input"
+											id="defaultUnchecked" name="isShow" value="false" checked>
+										<label class="custom-control-label" for="defaultUnchecked">False
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-12">
+								<label for="addressLine2">Product Image upload(270px X 303px)<span>*</span></label>
+								<div class="custom-file">
+									<input type="file" class="custom-file-input"
+										name="productImgFile" id="productImgFile"> <label
+										class="custom-file-label" for="customFile">Choose file</label>
+								</div>
+							</div>
+							<br /> <br /> <br /> <br />
+							<div class="col-lg-12">
+								<label for="postalZipCode">Product Image upload(70px X 70px)<span>*</span></label>
+								<div class="custom-file">
+									<input type="file" class="custom-file-input"
+										name="productImgFile2" id="productImgFile2"> <label
+										class="custom-file-label" for="customFile">Choose file</label>
+								</div>
+							</div>
+							<br /> <br /> <br /> <br />
+							<div class="col-lg-12">
+								<button type="submit" class="site-btn place-btn">Add</button>
+							</div>
+
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<div class="col-lg-12">
+							<label for="postalZipCode" style="color:green"><b>Image size (270px X 303px) <span>*</span></b></label>
+							<img id="image1" height="303px" width="270px" th:src="@{/img/blog/blog-detail-1.jpg}" src="#"
+								alt=""> <br /> <br />
+
+						</div>
+						<div class="col-lg-12">
+							<label for="postalZipCode" style="color:green"><b>Image size (70px X 70px) <span>*</span></b></label>
+							<img id="image2" th:src="@{/img/blog/blog-detail-1.jpg}" height="70px" width="70px" src="#"
+								alt=""> <br /> <br />
+						</div>
+					</div>
+				</div>
+			</form>
+
+		</div>
+	</section>
+	<!-- Shopping Cart Section End -->
+
+	<!-- Partner Logo Section Begin -->
+	<div class="partner-logo">
+		<div class="container">
+			<div class="logo-carousel owl-carousel">
+				<div class="logo-item">
+					<div class="tablecell-inner">
+						<img src="#" alt="">
+					</div>
+				</div>
+				<div class="logo-item">
+					<div class="tablecell-inner">
+						<img src="#" alt="">
+					</div>
+				</div>
+				<div class="logo-item">
+					<div class="tablecell-inner">
+						<img src="#" alt="">
+					</div>
+				</div>
+				<div class="logo-item">
+					<div class="tablecell-inner">
+						<img src="#" alt="">
+					</div>
+				</div>
+				<div class="logo-item">
+					<div class="tablecell-inner">
+						<img src="#" alt="">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Partner Logo Section End -->
+
+	<footer th:replace="general :: footer"></footer>
+	<script th:src="@{/js/validation/add-product.js}"></script>
+	<script>
+		// Add the following code if you want the name of the file appear on select
+		$(".custom-file-input").on(
+				"change",
+				function() {
+					var fileName = $(this).val().split("\\").pop();
+					$(this).siblings(".custom-file-label").addClass("selected")
+							.html(fileName);
+					//var id = this.id;
+					//console.log(id);
+					//if (id == "productImgFile") {
+					//	document.getElementById("image1").src = $(this).val();
+					//}
+				});
+	</script>
+	<script type="text/javascript">
+		function readURL1(input) {
+			if (input.files && input.files[0]) {
+				var reader = new FileReader();
+
+				reader.onload = function(e) {
+					$('#image1').attr('src', e.target.result);
+				}
+				reader.readAsDataURL(input.files[0]);
+			}
+		}
+		function readURL2(input) {
+			if (input.files && input.files[0]) {
+				var reader = new FileReader();
+
+				reader.onload = function(e) {
+					$('#image2').attr('src', e.target.result);
+				}
+				reader.readAsDataURL(input.files[0]);
+			}
+		}
+		$("#productImgFile").change(function() {
+			readURL1(this);
+		});
+		$("#productImgFile2").change(function() {
+			readURL2(this);
+		});
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head th:replace="general :: baseHead">
+</head>
+
+<body>
+	<!-- Page Preloder -->
+	<div id="preloder">
+		<div class="loader"></div>
+	</div>
+
+	<!-- Header Section Begin -->
+	<header class="header-section">
+		<div class="container">
+			<div class="inner-header">
+				<div class="row">
+					<div class="col-lg-2 col-md-2">
+						<div class="logo">
+							<a th:href="@{/}" href="#"> <img th:src="@{/image/logo.png}"
+								src="#" alt="">
+							</a>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+	</header>
+	<!-- Header End -->
+
+	<!-- Breadcrumb Section Begin -->
+	<!-- Breadcrumb Form Section Begin -->
+
+	<!-- Register Section Begin -->
+	<div class="register-login-section spad" style="padding-top: 5px">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6 offset-lg-3">
+					<div class="login-form">
+						<h2>Admin Login</h2>
+						<form action="#" th:action="@{/login}" method="POST">
+							<div class="group-input">
+								<label for="username">Username *</label> <input type="text"
+									id="user_name" name="user_name" placeholder="User Name">
+							</div>
+							<div class="group-input">
+								<label for="password">Password *</label> <input type="password"
+									th:placeholder="Password" id="password" name="password">
+							</div>
+							<div class="alert alert-danger" th:if="${param.error}"
+								role="alert">User Name or Password invalid, please verify</div>
+							<button type="submit" class="site-btn login-btn">Sign In</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Register Form Section End -->
+
+	<!-- Partner Logo Section Begin -->
+	<div class="partner-logo">
+		<div class="container">
+			<div class="logo-carousel owl-carousel">
+				<div class="logo-item">
+					<div class="tablecell-inner">
+						<img src="#" alt="">
+					</div>
+				</div>
+				<div class="logo-item">
+					<div class="tablecell-inner">
+						<img src="#" alt="">
+					</div>
+				</div>
+				<div class="logo-item">
+					<div class="tablecell-inner">
+						<img src="#" alt="">
+					</div>
+				</div>
+				<div class="logo-item">
+					<div class="tablecell-inner">
+						<img src="#" alt="">
+					</div>
+				</div>
+				<div class="logo-item">
+					<div class="tablecell-inner">
+						<img src="#" alt="">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Partner Logo Section End -->
+
+	<!-- Partner Logo Section End -->
+
+	<footer th:replace="general :: footer"></footer>
+</body>
+
+</html>

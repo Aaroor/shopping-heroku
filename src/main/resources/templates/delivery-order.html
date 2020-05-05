@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="zxx" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="general :: baseHead">
+</head>
+<body>
+	<style>
+.dropdown-menu.show {
+	display: block;
+	background-color: black;
+}
+</style>
+	<!-- Page Preloder -->
+	<div id="preloder">
+		<div class="loader"></div>
+	</div>
+	<!-- Header Section Begin -->
+	<!-- Header Section Begin -->
+	<header class="header-section">
+		<div class="container">
+			<div class="inner-header">
+				<div class="row">
+					<div class="col-lg-2 col-md-2">
+						<div class="logo">
+							<a th:href="@{/}" href="#"> <img th:src="@{/image/logo.png}"
+								src="#" alt="">
+							</a>
+						</div>
+					</div>
+
+					<div class="col-lg-7 col-md-7">
+						<div class="advanced-search">
+							<p class="category-btn">
+								<i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard
+							</p>
+							<div class="input-group">
+								<h3 style="margin-top: 5px; font-weight: bold">HLS DRINK
+									SHOP</h3>
+								<button type="button">
+									<i class="fa fa-tachometer" aria-hidden="true"></i>
+								</button>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-3 text-right col-md-3" id="addToCardList">
+						<ul class="nav-right">
+							<li><a th:href="@{/logout}" href="#" class="btn btn-info"><i
+									class="fa fa-sign-out" aria-hidden="true"></i> Log out</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="nav-item">
+			<div class="container">
+				<div class="nav-depart">
+					<div class="depart-btn">
+						<i class="ti-menu"></i> <span>Product List</span>
+						<ul class="depart-hover">
+							<li><a th:href="@{/admin/product-list}" href="#">Product
+									List</a></li>
+							<li><a th:href="@{/admin/add-product}" href="#">Add
+									Product</a></li>
+							<li><a th:href="@{/admin/category-list}" href="#">Product
+									Category</a></li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="nav-depart">
+					<div class="depart-btn">
+						<i class="ti-menu"></i> <span>Orders</span>
+						<ul class="depart-hover">
+							<li class="active"><a th:href="@{/admin/delivery-order}"
+								href="#">Delivery Orders</a></li>
+							<li><a th:href="@{/admin/pickup-order}" href="#">Pickup Orders</a></li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="nav-depart">
+					<div class="depart-btn">
+						<i class="ti-menu"></i> <span>Admin User</span>
+						<ul class="depart-hover">
+							<li><a th:href="@{/admin/user-list}" href="#">User List</a></li>
+							<li><a th:href="@{/registration}" href="#">Add user</a></li>
+						</ul>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</header>
+	<!-- Header End -->
+
+
+	<!-- Breadcrumb Section Begin -->
+	<div class="breacrumb-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="breadcrumb-text product-more">
+						<a th:href="@{/admin/home}" href="#"><i
+							class="fa fa-tachometer" aria-hidden="true"></i> Dashboard</a> <span>Delivery Order
+							List</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Breadcrumb Section end -->
+	<!-- Shopping Cart Section Begin -->
+	<section class="checkout-section spad" style="padding-top: 15px">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="cart-table">
+						<table>
+							<thead>
+								<tr>
+									<th>Order Id</th>
+									<th>Order Date</th>
+									<th>Delivery Status</th>
+									<th>Order view</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:id="'user-row'+${order.id}" th:each="order: ${lorders}">
+
+
+									<td class="p-price first-row">
+										<h5>[[${order.id}]]</h5>
+									</td>
+									<td class="p-price first-row">[[${order.createdAt}]]</td>
+									<td class="total-price first-row"
+										th:id="'row-order'+${order.id}"><input
+										th:if="${order.isDeliveryOrPickupDone()}" type="checkbox"
+										th:id="'order-input-visible'+${order.id}" data-toggle="toggle"
+										data-on="Done" data-off="Pending" checked> <input
+										th:unless="${order.isDeliveryOrPickupDone()}" type="checkbox"
+										th:id="'order-input-visible'+${order.id}" data-toggle="toggle"
+										data-on="Done" data-off="Pending"></td>
+									<td class="close-td first-row"><a href="#"
+										class="btn btn-info" data-toggle="modal"
+										th:data-target="${'#orderModel'+order.id}"><i class="fa fa-external-link" aria-hidden="true"></i></a></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</section>
+	<!-- Shopping Cart Section End -->
+
+	<!-- Partner Logo Section Begin -->
+	<div class="partner-logo">
+		<div class="container">
+			<div class="logo-carousel owl-carousel">
+				<div class="logo-item">
+					<div class="tablecell-inner">
+						<img src="#" alt="">
+					</div>
+				</div>
+				<div class="logo-item">
+					<div class="tablecell-inner">
+						<img src="#" alt="">
+					</div>
+				</div>
+				<div class="logo-item">
+					<div class="tablecell-inner">
+						<img src="#" alt="">
+					</div>
+				</div>
+				<div class="logo-item">
+					<div class="tablecell-inner">
+						<img src="#" alt="">
+					</div>
+				</div>
+				<div class="logo-item">
+					<div class="tablecell-inner">
+						<img src="#" alt="">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Partner Logo Section End -->
+	<!-- modal start -->
+	<div th:each="orders: ${lorders}" th:id="'orderModel'+${orders.id}"
+		class="modal fade" tabindex="-1" role="dialog"
+		aria-labelledby="myLargeModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="row">
+					<div class="col-lg-12">
+						<table class="table">
+							<thead>
+								<tr>
+									<th scope="col"></th>
+									<th scope="col"></th>
+									<th scope="col"></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="table-success"
+									th:each="order: ${orders.orderProducts}">
+									<th scope="row">*</th>
+									<td>[[${order.getProduct().name}]] x [[${order.quantity}]]</td>
+									<td>&euro;
+										[[${#numbers.formatDecimal(order.getTotalPrice(), 0, 'COMMA',
+										2, 'POINT')}]]</td>
+								</tr>
+								<tr class="table-danger">
+									<th scope="row">*</th>
+									<th scope="row">Subtotal</th>
+									<th scope="row">&euro;
+										[[${#numbers.formatDecimal(orders.getTotalOrderPrice(), 0,
+										'COMMA', 2, 'POINT')}]]</th>
+								</tr>
+								<tr class="table-danger">
+									<th scope="row">*</th>
+									<th scope="row">Delivery charge</th>
+									<th scope="row">&euro;
+										[[${#numbers.formatDecimal(orders.deliveryCharge, 0, 'COMMA',
+										2, 'POINT')}]]</th>
+								</tr>
+								<tr class="table-danger">
+									<th scope="row">*</th>
+									<th scope="row">Total</th>
+									<th scope="row">&euro;
+										[[${#numbers.formatDecimal(orders.getTotalOrderPriceWithDeliveryCharge(),
+										0, 'COMMA', 2, 'POINT')}]]</th>
+								</tr>
+
+							</tbody>
+						</table>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- modal end -->
+
+	<footer th:replace="general :: footer"></footer>
+</body>
+
+</html>
